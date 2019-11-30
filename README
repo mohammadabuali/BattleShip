@@ -1,0 +1,156 @@
+abu.omar
+208887687
+Mohammad Abu Ali
+
+I discussed the exercise with: saji abu al-teeb
+
+=============================
+=  README for ex8  =
+=============================
+
+
+==================
+=  Description:  =
+==================
+
+we have 2 files the first one is in the name of 'ship.py' and in it we use functions that helps us play and
+execute the other file which is game.py
+in ship.py we identify 2 classes the first on is 'Direction' which tells us if the ship is moving where is
+its direction and if not it also tells us that its not moving
+the second class is 'Ship' which in it we control how the ship moves or stops, how it changes direction
+and how it reacts when its hit or not
+and it uses the following functions
+	__init__(self, pos, length, direction, board_size):
+        
+        A constructor for a Ship object
+        :param pos: A tuple representing The ship's head's (x, y) position
+        :param length: Ship's length
+        :param direction: Initial direction in which the ship is sailing
+        :param board_size: Board size in which the ship is sailing
+        
+	repr__(self):
+        
+        Return a string representation of the ship.
+        :return: A tuple converted to string (that is, for a tuple x return
+            str(x)).
+        The tuple's content should be (in the exact following order):
+            1. A list of all the ship's coordinates.
+            2. A list of all the ship's hit coordinates.
+            3. Last sailing direction.
+            4. The size of the board in which the ship is located.
+		move(self):
+        
+        Make the ship move one board unit.
+        Movement is in the current sailing direction, unless such movement would
+        take the ship outside of the board, in which case the ship switches
+        direction and sails one board unit in the new direction.
+        :return: A direction object representing the current movement direction.
+        
+	hit(self, pos):
+        
+        Inform the ship that a bomb hit a specific coordinate. The ship updates
+         its state accordingly.
+        If one of the ship's body's coordinate is hit, the ship does not move
+         in future turns. If all ship's body's coordinate are hit, the ship is
+         terminated and removed from the board.
+        :param pos: A tuple representing the (x, y) position of the hit.
+        :return: True if the bomb generated a new hit in the ship, False
+         otherwise.
+        
+	terminated(self):
+        
+        :return: True if all ship's coordinates were hit in previous turns, False
+        otherwise.
+        
+	__contains__(self, pos):
+        
+        Check whether the ship is found in a specific coordinate.
+        :param pos: A tuple representing the coordinate for check.
+        :return: True if one of the ship's coordinates is found in the given
+        (x, y) coordinate, False otherwise.
+        
+	coordinates(self):
+        
+        Return ship's current coordinates on board.
+        :return: A list of (x, y) tuples representing the ship's current
+        occupying coordinates.
+        
+	damaged_cells(self):
+        
+        Return the ship's hit positions.
+        :return: A list of tuples representing the (x, y) coordinates of the
+         ship which were hit in past turns (If there are no hit coordinates,
+         return an empty list). There is no importance to the order of the
+         values in the returned list.
+        
+	direction(self):
+        
+        Return the ship's current sailing direction.
+        :return: One of the constants of Direction class :
+         [UP, DOWN, LEFT, RIGHT] according to current sailing direction or
+         NOT_MOVING if the ship is hit and not moving.
+        
+	cell_status(self, pos):
+        
+        Return the status of the given coordinate (hit\not hit) in current ship.
+        :param pos: A tuple representing the coordinate to query.
+        :return:
+            if the given coordinate is not hit : False
+            if the given coordinate is hit : True
+            if the coordinate is not part of the ship's body : None 
+
+
+in the file game.py we identify the class Game we run the game with several ships'all acts just like
+ how i programmed in 'ship.py'and in it we see that the life span of a bomb is 3 turns and if it didnt hit 
+anyship in thesethree turns it explodes and we also see that when the game is run a ship that isnt hit is 
+represented by 'X' and the hit parts are represented by 'O' and whe the ship is hit in the current turn it 
+returns'*' in every position that the ship was hit in
+ and it uses the following functions:
+	__init__(self, board_size, ships):
+        
+        Initialize a new Game object.
+        :param board_size: Length of the side of the game-board.
+        :param ships: A list of ships (of type Ship) that participate in the
+            game.
+        :return: A new Game object.
+
+	__play_one_round(self):
+        
+        Note - this function is here to guide you and it is *not mandatory*
+        to implement it. The logic defined by this function must be implemented
+        but if you wish to do so in another function (or some other functions)
+        it is ok.
+
+        The function runs one round of the game :
+            1. Get user coordinate choice for bombing.
+            2. Move all game's ships.
+            3. Update all ships and bombs.
+            4. Report to the user the result of current round (number of hits and
+             terminated ships)
+        :return:
+            (some constant you may want implement which represents) Game status :
+            GAME_STATUS_ONGOING if there are still ships on the board or
+            GAME_STATUS_ENDED otherwise.
+
+	__repr__(self):
+        
+        Return a string representation of the board's game.
+        :return: A tuple converted to string (that is, for a tuple x return
+            str(x)). The tuple should contain (maintain
+        the following order):
+            1. Board's size.
+            2. A dictionary of the bombs found on the board, mapping their
+                coordinates to the number of remaining turns:
+                 {(pos_x, pos_y) : remaining turns}
+                For example :
+                 {(0, 1) : 2, (3, 2) : 1}
+            3. A list of the ships found on the board (each ship should be
+                represented by its __repr__ string).
+
+	 play(self):
+        
+        The main driver of the Game. Manages the game until completion.
+        :return: None
+
+	__name__=="__main__":
+	calls all the functions and basically runs the game
